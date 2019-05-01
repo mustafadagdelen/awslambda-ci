@@ -45,5 +45,5 @@ def tagId() {
 }
 
 environment {
-    BUCKET_NAME = 'md-deploy-packages',
+    BUCKET_NAME = 'md-deploy-packages'
 }
