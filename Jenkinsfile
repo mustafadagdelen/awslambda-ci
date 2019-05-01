@@ -13,7 +13,8 @@ node('master'){
     }
 
     stage('Build'){
-        sh "zip ${tagId()}.zip main"
+        // sh "zip ${tagId()}.zip main"
+        zip zipFile: '${tagId().zip}'
     }
 
     stage('Push'){
