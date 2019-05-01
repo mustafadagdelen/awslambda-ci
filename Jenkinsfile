@@ -38,7 +38,7 @@ node('master'){
 
         deployLambda(awsRegion: 'us-west-1', awsAccessKeyId : "${env.AWS_ACCESS_KEY_ID}",
          awsSecretKey :"${env.AWS_SECRET_ACCESS_KEY}",functionName :functionName, 
-         memorySize : "256", role: 'arn:aws:iam::954880510467:role/lambda-cli-role', runtime : 'nodejs8.10', artifactLocation  : functionCode)
+         memorySize : "256", role: 'arn:aws:iam::954880510467:role/lambda-cli-role', runtime : 'nodejs8.10', artifactLocation  : functionCode, handler: 'handler')
     }
 }
 
