@@ -13,24 +13,25 @@ node('slaves'){
     }
 
     stage('Build'){
-        sh "zip ${commitID()}.zip main"
+        print   "Build working"
+        sh "zip ${tagId()}.zip main"
     }
 
     stage('Push'){
-        sh "aws s3 cp ${commitID()}.zip s3://${bucket}"
+        sh "aws s3 cp ${tagId()}.zip s3://${bucket}"
     }
 
     stage('Deploy'){
         sh "aws lambda update-function-code --function-name ${functionName} \
                 --s3-bucket ${bucket} \
-                --s3-key ${commitID()}.zip \
+                --s3-key ${tagId()}.zip \
                 --region ${region}"
     }
 }
 
-def tag() {
-    sh 'git rev-parse HEAD > .git/commitID'
-    def commitID = readFile('.git/commitID').trim()
-    sh 'rm .git/commitID'
-    commitID
+def tagId() {
+    sh 'git describe --tags > .git/tagId'
+    def tagId = readFile('.git/tagId').trim()
+    sh 'rm .git/tagId'
+    tagId
 }
