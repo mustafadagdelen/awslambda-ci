@@ -32,7 +32,9 @@ node('master'){
         //         --s3-key ${tagId()}.zip \
         //         --region ${region}"
 
-        deployLambda(awsRegion: 'us-west-1', awsAccessKeyId : "${env.AWS_ACCESS_KEY_ID}", awsSecretKey :"${env.AWS_SECRET_ACCESS_KEY}",functionName :functionName, memorySize : "256", role: 'arn:aws:iam::954880510467:role/lambda-cli-role', runtime : 'nodejs8.10', functionCode :"s3//${bucket}/${functionName}")
+        deployLambda(awsRegion: 'us-west-1', awsAccessKeyId : "${env.AWS_ACCESS_KEY_ID}",
+         awsSecretKey :"${env.AWS_SECRET_ACCESS_KEY}",functionName :functionName, 
+         memorySize : "256", role: 'arn:aws:iam::954880510467:role/lambda-cli-role', runtime : 'nodejs8.10', functionCode :"s3://${bucket}/${functionName}")
     }
 }
 
