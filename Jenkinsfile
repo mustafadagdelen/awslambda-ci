@@ -6,6 +6,7 @@ def region = 'eu-west-1'
 node('master'){
     stage('Checkout'){
         checkout scm
+        sh 'git fetch --tags'
     }
 
     stage('Test'){
@@ -36,7 +37,7 @@ node('master'){
 }
 
 def tagId() {
-    sh 'git fetch --tags && git describe --tags > .git/tagId'
+    sh 'git describe --tags > .git/tagId'
     def tagId = readFile('.git/tagId').trim()
     print ("Tag Id : ${tagId}")
     sh 'rm .git/tagId'
