@@ -1,0 +1,3 @@
+aws lambda create-function --function-name "hello-world" --runtime "nodejs8.10" --handler "awscli.handler" --timeout 5 
+--memory-size 256 
+--zip-file "s3://md-deploy-packages/awscli.zip"
