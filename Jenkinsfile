@@ -16,7 +16,6 @@ node('master'){
         // sh "zip ${tagId()}.zip main"
         sh "pwd"
         zip zipFile: "${tagId()}.zip", glob: '**/*.js'
-
     }
 
     stage('Push'){
@@ -27,10 +26,6 @@ node('master'){
 
     stage('Deploy'){
          input("Deploy To Lambda?")
-        // sh "aws lambda update-function-code --function-name ${functionName} \
-        //         --s3-bucket ${bucket} \
-        //         --s3-key ${tagId()}.zip \
-        //         --region ${region}"
 
         functionCode = "s3://${bucket}/${tagId()}.zip"
 
