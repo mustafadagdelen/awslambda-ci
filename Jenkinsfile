@@ -15,7 +15,7 @@ node('master'){
     stage('Build'){
         // sh "zip ${tagId()}.zip main"
         
-        zip zipFile: "${tagId()}.zip" dir: "./" glob: '**/*.js'
+        zip zipFile: "${tagId()}.zip", dir: "./", glob: '**/*.js'
 
     }
 
