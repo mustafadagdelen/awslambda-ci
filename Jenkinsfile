@@ -37,7 +37,7 @@ node('master'){
 }
 
 def tagId() {
-    sh 'git describe --tags > .git/tagId'
+    sh '(git describe --tags `git rev-list --tags --max-count=1`) > .git/tagId'
     def tagId = readFile('.git/tagId').trim()
     print ("Tag Id : ${tagId}")
     sh 'rm .git/tagId'
