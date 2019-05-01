@@ -14,13 +14,15 @@ node('master'){
 
     stage('Build'){
         // sh "zip ${tagId()}.zip main"
-        zip zipFile: '${tagId().zip}'
+        
+        zip zipFile: "${tagId()}.zip"
     }
 
     stage('Push'){
         // sh "aws s3 cp ${tagId()}.zip s3://${bucket}"
         // sh "aws s3 cp ${tagId()}.zip s3://${bucket}"
-        s3Upload(file: '${tagId()}.zip', bucket: bucket)
+        
+        s3Upload(file: "${tagId()}.zip", bucket: bucket)
         print("Uploaded to bucket")
     }
 
