@@ -27,10 +27,12 @@ node('master'){
 
     stage('Deploy'){
          input("Deploy To Lambda?")
-        sh "aws lambda update-function-code --function-name ${functionName} \
-                --s3-bucket ${bucket} \
-                --s3-key ${tagId()}.zip \
-                --region ${region}"
+        // sh "aws lambda update-function-code --function-name ${functionName} \
+        //         --s3-bucket ${bucket} \
+        //         --s3-key ${tagId()}.zip \
+        //         --region ${region}"
+        // publishLambda(awsRegion: 'us-west-1', awsAccessKeyId : 'AKIA54U2QJIBTLZGZNHO', awsSecretKey :'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')
+        deployLambda(awsRegion: 'us-west-1', functionName :functionName, memorySize :256, role: 'arn:aws:iam::954880510467:role/lambda-cli-role', runtime : 'nodejs8.10', functionCode :"s3//${bucket}/${functionName}")
     }
 }
 
