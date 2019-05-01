@@ -20,8 +20,8 @@ node('master'){
     }
 
     stage('Push'){
-        // s3Upload(file: "${tagId()}.zip", bucket: bucket)
-        s3Upload(file: "helloworld.js", bucket: bucket)
+        s3Upload(file: "${tagId()}.zip", bucket: bucket)
+        // s3Upload(file: "helloworld.js", bucket: bucket)
         print("Uploaded to bucket")
     }
 
