@@ -36,7 +36,7 @@ node('master'){
 }
 
 def tagId() {
-    sh 'git describe --tags > .git/tagId'
+    sh 'git fetch --tags && git describe --tags > .git/tagId'
     def tagId = readFile('.git/tagId').trim()
     print ("Tag Id : ${tagId}")
     sh 'rm .git/tagId'
