@@ -1,6 +1,6 @@
 
-def bucket = 'deployment-packages-mlabouardy'
-def functionName = 'Fibonacci'
+def bucket = 'md-deploy-packages'
+def functionName = 'hello-world'
 def region = 'eu-west-1'
 
 node('master'){
@@ -13,7 +13,6 @@ node('master'){
     }
 
     stage('Build'){
-        print   "Build working"
         sh "zip ${tagId()}.zip main"
     }
 
@@ -34,4 +33,8 @@ def tagId() {
     def tagId = readFile('.git/tagId').trim()
     sh 'rm .git/tagId'
     tagId
+}
+
+environment {
+    BUCKET_NAME = 'md-deploy-packages'
 }
