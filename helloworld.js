@@ -1,5 +1,5 @@
 exports.handler = async (event) => {
-    return sendRes(200,'Hello World 2');
+    return sendRes(200,'Hello World from Trial Day');
 };
 
 const sendRes = (status, body) => {
