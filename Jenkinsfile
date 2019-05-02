@@ -9,12 +9,13 @@ node('master'){
         sh 'git fetch --tags'
     }
 
-    stage('Test'){
-     
+
+      stage('Build'){
+        zip zipFile: "${tagId()}.zip", glob: '**/*.js'
     }
 
-    stage('Build'){
-        zip zipFile: "${tagId()}.zip", glob: '**/*.js'
+    stage('Test'){
+     
     }
 
     stage('Push'){
